@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>日檢 N4 學習助手</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .menu-card {
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .menu-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+
+    <!-- 標題區 -->
+    <header class="bg-blue-600 text-white py-10 shadow-lg">
+        <div class="container mx-auto text-center">
+            <h1 class="text-4xl font-bold">日本語能力試験 N4 練習站</h1>
+            <p class="mt-2 text-blue-100">継続は力なり (持續就是力量)</p>
+        </div>
+    </header>
+
+    <!-- 主要選單區 -->
+    <main class="container mx-auto px-4 py-12">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            
+            <!-- 單字方塊 -->
+            <div onclick="alert('進入單字練習')" class="menu-card bg-white p-8 rounded-2xl border-b-4 border-red-500 cursor-pointer text-center">
+                <div class="text-4xl mb-4">🏮</div>
+                <h2 class="text-2xl font-bold text-gray-800">單字 (語彙)</h2>
+                <p class="text-gray-500 mt-2">核心名詞、動詞與形容詞</p>
+            </div>
+
+            <!-- 聽力方塊 -->
+            <div onclick="alert('進入聽力練習')" class="menu-card bg-white p-8 rounded-2xl border-b-4 border-blue-500 cursor-pointer text-center">
+                <div class="text-4xl mb-4">🎧</div>
+                <h2 class="text-2xl font-bold text-gray-800">聽力 (聴解)</h2>
+                <p class="text-gray-500 mt-2">情境對話與關鍵字捕捉</p>
+            </div>
+
+            <!-- 文法方塊 -->
+            <div onclick="alert('進入文法練習')" class="menu-card bg-white p-8 rounded-2xl border-b-4 border-green-500 cursor-pointer text-center">
+                <div class="text-4xl mb-4">📝</div>
+                <h2 class="text-2xl font-bold text-gray-800">文法 (文法)</h2>
+                <p class="text-gray-500 mt-2">N4 重點句型與助詞解析</p>
+            </div>
+
+            <!-- 閱讀方塊 -->
+            <div onclick="alert('進入閱讀練習')" class="menu-card bg-white p-8 rounded-2xl border-b-4 border-yellow-500 cursor-pointer text-center">
+                <div class="text-4xl mb-4">📖</div>
+                <h2 class="text-2xl font-bold text-gray-800">閱讀 (読解)</h2>
+                <p class="text-gray-500 mt-2">短文閱讀與訊息檢索</p>
+            </div>
+
+            <!-- 測驗方塊 -->
+            <div onclick="alert('進入模擬測驗')" class="menu-card bg-white p-8 rounded-2xl border-b-4 border-purple-500 cursor-pointer text-center lg:col-span-1">
+                <div class="text-4xl mb-4">🎯</div>
+                <h2 class="text-2xl font-bold text-gray-800">測驗 (テスト)</h2>
+                <p class="text-gray-500 mt-2">綜合模擬試題練習</p>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- 底部資訊 -->
+    <footer class="text-center text-gray-400 py-8 text-sm">
+        &copy; 2026 N4 Learning Portal. 努力學習中！
+    </footer>
+
+</body>
+</html>
