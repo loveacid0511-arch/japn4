@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>N4 單字練習</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <div class="container mx-auto px-4 py-8 max-w-2xl">
+        <!-- 返回首頁 -->
+        <a href="index.html" class="text-blue-500 mb-6 inline-block">← 返回主選單</a>
+
+        <!-- 模式選擇 -->
+        <div id="mode-selection" class="bg-white p-8 rounded-2xl shadow-md text-center">
+            <h2 class="text-2xl font-bold mb-6">請選擇練習模式</h2>
+            <div class="grid grid-cols-1 gap-4">
+                <button onclick="startQuiz('jp-to-ch')" class="bg-blue-500 text-white py-4 rounded-xl text-lg font-semibold hover:bg-blue-600">日文 → 中文</button>
+                <button onclick="startQuiz('ch-to-jp')" class="bg-green-500 text-white py-4 rounded-xl text-lg font-semibold hover:bg-green-600">中文 → 日文</button>
+                <button onclick="showWrongWords()" class="bg-red-100 text-red-600 py-4 rounded-xl text-lg font-semibold hover:bg-red-200">查看錯字庫 (<span id="wrong-count">0</span>)</button>
+            </div>
+        </div>
+
+        <!-- 測驗區域 -->
+        <div id="quiz-area" class="hidden bg-white p-8 rounded-2xl shadow-md">
+            <div class="flex justify-between mb-4 text-sm text-gray-500">
+                <span id="progress">題目：1 / 10</span>
+                <span id="score-display">分數：0</span>
+            </div>
+            <div id="question-text" class="text-3xl font-bold text-center my-8 text-gray-800"></div>
+            <div id="options-grid" class="grid grid-cols-1 gap-4">
+                <!-- 選項會由 JS 動態生成 -->
+            </div>
+        </div>
+
+        <!-- 結果結算 -->
+        <div id="result-area" class="hidden bg-white p-8 rounded-2xl shadow-md text-center">
+            <h2 class="text-3xl font-bold mb-4">測驗結束</h2>
+            <p id="final-score" class="text-xl mb-6"></p>
+            <button onclick="location.reload()" class="bg-blue-500 text-white px-8 py-3 rounded-full">再試一次</button>
+        </div>
+    </div>
+
+    <script>
+        // 範例題庫 (您可以自行增加)
+        const wordBank = [
+            { jp: "準備 (じゅんび)", ch: "準備" },
+            { jp: "特別 (とくべつ)", ch: "特別" },
+            { jp: "紹介 (しょうかい)", ch: "介紹" },
+            { jp: "便利 (べんり)", ch: "方便" },
+            { jp: "全然 (ぜんぜん)", ch: "完全(不)" },
+            { jp: "一生懸命 (いっしょうけんめい)", ch: "拼命地" },
+            { jp: "残念 (ざんねん)", ch: "可惜" },
+            { jp: "安心 (あんしん)", ch: "放心" },
+            { jp: "複雑 (ふくざつ)", ch: "複雜" },
+            { jp: "必要 (ひつよう)", ch: "必要" },
+            { jp: "注意 (ちゅうい)", ch: "注意" },
+            { jp: "失敗 (しっぱい)", ch: "失敗" }
+        ];
+
+        let currentQuiz = [];
+        let currentIndex = 0;
+        let score = 0;
+        let quizMode = '';
+        let wrongWords = JSON.parse(localStorage.getItem('n4_wrong_words') || '[]');
+
+        document.getElementById('wrong-count').innerText = wrongWords.length;
+
+        function startQuiz(mode) {
+            quizMode = mode;
+            currentIndex = 0;
+            score = 0;
+            // 隨機選出 10 題
+            currentQuiz = [...wordBank].sort(() => 0.5 - Math.random()).slice(0, 10);
+            
+            document.getElementById('mode-selection').classList.add('hidden');
+            document.getElementById('quiz-area').classList.remove('hidden');
+            showQuestion();
+        }
+
+        function showQuestion() {
+            const q = currentQuiz[currentIndex];
+            const isJpToCh = quizMode === 'jp-to-ch';
+            
+            document.getElementById('progress').innerText = `題目：${currentIndex + 1} / 10`;
+            document.getElementById('question-text').innerText = isJpToCh ? q.jp : q.ch;
+
+            // 生成選項（1個正確 + 3個隨機錯誤）
+            let options = [q];
+            while(options.length < 4) {
+                let randomWord = wordBank[Math.floor(Math.random() * wordBank.length)];
+                if(!options.includes(randomWord)) options.push(randomWord);
+            }
+            options.sort(() => 0.5 - Math.random());
+
+            const grid = document.getElementById('options-grid');
+            grid.innerHTML = '';
+            options.forEach(opt => {
+                const btn = document.createElement('button');
+                btn.className = "p-4 border-2 border-gray-200 rounded-xl hover:border-blue-500 hover:bg-blue-50 transition-all text-lg";
+                btn.innerText = isJpToCh ? opt.ch : opt.jp;
+                btn.onclick = () => checkAnswer(opt === q, q);
+                grid.appendChild(btn);
+            });
+        }
+
+        function checkAnswer(isCorrect, questionObj) {
+            if (isCorrect) {
+                score += 10;
+                alert("正解！");
+            } else {
+                alert(`可惜！正確答案是：${quizMode === 'jp-to-ch' ? questionObj.ch : questionObj.jp}`);
+                // 加入錯題庫（檢查是否重複）
+                if (!wrongWords.some(w => w.jp === questionObj.jp)) {
+                    wrongWords.push(questionObj);
+                    localStorage.setItem('n4_wrong_words', JSON.stringify(wrongWords));
+                }
+            }
+            
+            currentIndex++;
+            if (currentIndex < 10) {
+                showQuestion();
+            } else {
+                showResult();
+            }
+        }
+
+        function showResult() {
+            document.getElementById('quiz-area').classList.add('hidden');
+            document.getElementById('result-area').classList.remove('hidden');
+            document.getElementById('final-score').innerText = `你的得分是：${score} / 100`;
+        }
+
+        function showWrongWords() {
+            if (wrongWords.length === 0) {
+                alert("目前沒有錯字喔，真棒！");
+                return;
+            }
+            let list = wrongWords.map(w => `${w.jp} : ${w.ch}`).join('\n');
+            alert("你的錯字庫：\n" + list);
+        }
+    </script>
+</body>
+</html>
