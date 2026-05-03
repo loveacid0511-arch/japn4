@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>N4 單字練習</title>
-    <script src="[https://cdn.tailwindcss.com](https://cdn.tailwindcss.com)"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-100 min-h-screen">
     <div class="container mx-auto px-4 py-8 max-w-2xl">
@@ -42,22 +42,8 @@
     </div>
 
     <script>
-        // 範例題庫 (您可以自行增加)
+        // 修正後的 200 題庫
         const wordBank = [
-            { jp: "準備 (じゅんび)", ch: "準備" },
-            { jp: "特別 (とくべつ)", ch: "特別" },
-            { jp: "紹介 (しょうかい)", ch: "介紹" },
-            { jp: "便利 (べんり)", ch: "方便" },
-            { jp: "全然 (ぜんぜん)", ch: "完全(不)" },
-            { jp: "一生懸命 (いっしょうけんめい)", ch: "拼命地" },
-            { jp: "残念 (ざんねん)", ch: "可惜" },
-            { jp: "安心 (あんしん)", ch: "放心" },
-            { jp: "複雑 (ふくざつ)", ch: "複雜" },
-            { jp: "必要 (ひつよう)", ch: "必要" },
-            { jp: "注意 (ちゅうい)", ch: "注意" },
-            { jp: "失敗 (しっぱい)", ch: "失敗" }// N4 擴充題庫 200 題
-        const wordBank = [
-            // --- 動詞 (Verbs) ---
             { jp: "集める (あつめる)", ch: "收集、集合" },
             { jp: "謝る (あやまる)", ch: "道歉" },
             { jp: "生きる (いきる)", ch: "生存、活著" },
@@ -93,7 +79,6 @@
             { jp: "育てる (そだてる)", ch: "養育" },
             { jp: "倒れる (たおれる)", ch: "倒下" },
             { jp: "訪ねる (たずねる)", ch: "造訪" },
-            { jp: "訪ねる (たずねる)", ch: "尋問" },
             { jp: "建てる (たてる)", ch: "建造" },
             { jp: "足りる (たりる)", ch: "足夠" },
             { jp: "捕まえる (つかまえる)", ch: "抓住" },
@@ -114,11 +99,11 @@
             { jp: "投げる (なげる)", ch: "投擲" },
             { jp: "鳴る (なる)", ch: "響、叫" },
             { jp: "慣れる (なれる)", ch: "習慣" },
-            { jp: "盗む (ぬすむ)", ch: "偷竊" },
+            { jp: "盜む (ぬすむ)", ch: "偷竊" },
             { jp: "塗る (ぬる)", ch: "塗抹" },
             { jp: "濡れる (ぬれる)", ch: "弄濕" },
             { jp: "眠る (ねむる)", ch: "睡覺" },
-            { jp: "残る (のこる)", ch: "殘留" },
+            { jp: "殘る (のこる)", ch: "殘留" },
             { jp: "乗り換える (のりかえる)", ch: "換乘" },
             { jp: "運ぶ (はこぶ)", ch: "搬運" },
             { jp: "始まる (はじまる)", ch: "開始" },
@@ -132,7 +117,7 @@
             { jp: "太る (ふとる)", ch: "變胖" },
             { jp: "踏む (ふむ)", ch: "踩踏" },
             { jp: "褒める (ほめる)", ch: "讚美" },
-            { jp: "参る (まいる)", ch: "去、來 (自謙語)" },
+            { jp: "參る (まいる)", ch: "去、來 (自謙語)" },
             { jp: "負ける (まける)", ch: "輸" },
             { jp: "間違える (まちがえる)", ch: "弄錯" },
             { jp: "間に合う (まにあう)", ch: "趕得上" },
@@ -157,9 +142,7 @@
             { jp: "沸く (わく)", ch: "沸騰" },
             { jp: "笑う (わらう)", ch: "笑" },
             { jp: "割れる (われる)", ch: "碎裂" },
-
-            // --- 形容詞 (Adjectives) ---
-            { jp: "浅い (あさい)", ch: "淺的" },
+            { jp: "淺い (あさい)", ch: "淺的" },
             { jp: "美しい (うつくしい)", ch: "美麗的" },
             { jp: "うれしい", ch: "高興的" },
             { jp: "おかしい", ch: "奇怪的、好笑的" },
@@ -173,7 +156,7 @@
             { jp: "素晴らしい (すばらしい)", ch: "極佳的" },
             { jp: "正しい (正しい)", ch: "正確的" },
             { jp: "苦い (にがい)", ch: "苦的" },
-            { jp: "温い (ぬるい)", ch: "微溫的" },
+            { jp: "溫い (ぬるい)", ch: "微溫的" },
             { jp: "恥ずかしい (はずかしい)", ch: "害羞的、丟臉的" },
             { jp: "酷い (ひどい)", ch: "過分的、殘酷的" },
             { jp: "深い (ふかい)", ch: "深的" },
@@ -181,17 +164,15 @@
             { jp: "柔らかい (やわらかい)", ch: "柔軟的" },
             { jp: "よろしい", ch: "好的 (禮貌語)" },
             { jp: "安全 (あんぜん)", ch: "安全" },
-            { jp: "残念 (ざんねん)", ch: "可惜" },
+            { jp: "殘念 (ざんねん)", ch: "可惜" },
             { jp: "心配 (しんぱい)", ch: "擔心" },
             { jp: "自由 (じゆう)", ch: "自由" },
             { jp: "十分 (じゅうぶん)", ch: "充分" },
             { jp: "丁寧 (ていねい)", ch: "彬彬有禮" },
             { jp: "熱心 (ねっしん)", ch: "熱心" },
             { jp: "必要 (ひつよう)", ch: "必要" },
-            { jp: "複雑 (ふくざつ)", ch: "複雜" },
+            { jp: "複雜 (ふくざつ)", ch: "複雜" },
             { jp: "無理 (むり)", ch: "不可能、勉強" },
-
-            // --- 名詞 (Nouns) ---
             { jp: "挨拶 (あいさつ)", ch: "打招呼" },
             { jp: "間 (あいだ)", ch: "期間、中間" },
             { jp: "相手 (あいて)", ch: "對方" },
@@ -201,23 +182,23 @@
             { jp: "明日 (あす)", ch: "明天" },
             { jp: "遊び (あそび)", ch: "遊戲" },
             { jp: "集まり (あつまり)", ch: "集合" },
-            { jp: "案内 (あんない)", ch: "導覽" },
-            |{ jp: "以下 (いか)", ch: "以下" },
+            { jp: "案內 (あんない)", ch: "導覽" },
+            { jp: "以下 (いか)", ch: "以下" },
             { jp: "以外 (いがい)", ch: "以外" },
-            { jp: "医学 (いがく)", ch: "醫學" },
+            { jp: "醫學 (いがく)", ch: "醫學" },
             { jp: "意見 (いけん)", ch: "意見" },
             { jp: "田舎 (いなか)", ch: "鄉下" },
             { jp: "受付 (うけつけ)", ch: "接待處" },
-            { jp: "嘘 (うそ)", ch: "謊言" },
-            { jp: "以内 (いない)", ch: "以內" },
+            { jp: "噓 (うそ)", ch: "謊言" },
+            { jp: "以內 (いない)", ch: "以內" },
             { jp: "お祝い (おいわい)", ch: "慶祝" },
             { jp: "屋上 (おくじょう)", ch: "頂樓" },
             { jp: "贈り物 (おくりもの)", ch: "禮物" },
             { jp: "思い出 (おもいで)", ch: "回憶" },
             { jp: "海岸 (かいがん)", ch: "海岸" },
-            { jp: "会議 (かいぎ)", ch: "會議" },
-            { jp: "会場 (かいじょう)", ch: "會場" },
-            { jp: "会話 (かいわ)", ch: "對話" },
+            { jp: "會議 (かいぎ)", ch: "會議" },
+            { jp: "會場 (かいじょう)", ch: "會場" },
+            { jp: "會話 (かいわ)", ch: "對話" },
             { jp: "帰り (かえり)", ch: "歸途" },
             { jp: "鏡 (かがみ)", ch: "鏡子" },
             { jp: "火事 (かじ)", ch: "火災" },
@@ -228,11 +209,11 @@
             { jp: "希望 (きぼう)", ch: "希望" },
             { jp: "給行 (きゅうこう)", ch: "快車" },
             { jp: "近所 (きんじょ)", ch: "附近" },
-            { jp: "空気 (くうき)", ch: "空氣" },
+            { jp: "空氣 (くうき)", ch: "空氣" },
             { jp: "空港 (くうこう)", ch: "機場" },
             { jp: "草 (くさ)", ch: "草" },
-            { jp: "計画 (けいかく)", ch: "計畫" },
-            { jp: "経験 (けいけん)", ch: "經驗" },
+            { jp: "計畫 (けいかく)", ch: "計畫" },
+            { jp: "經驗 (けいけん)", ch: "經驗" },
             { jp: "景色 (けしき)", ch: "風景" },
             { jp: "原因 (げんいん)", ch: "原因" },
             { jp: "見物 (けんぶつ)", ch: "參觀" },
@@ -240,8 +221,8 @@
             { jp: "工業 (こうぎょう)", ch: "工業" },
             { jp: "工場 (こうじょう)", ch: "工廠" },
             { jp: "校長 (こうちょう)", ch: "校長" },
-            { jp: "公務員 (こうむいん)", ch: "公務員" },
-            { jp: "国際 (こくさい)", ch: "國際" },
+            { jp: "公務員 (こう務員)", ch: "公務員" },
+            { jp: "國際 (こくさい)", ch: "國際" },
             { jp: "故障 (こしょう)", ch: "故障" },
             { jp: "今夜 (こんや)", ch: "今晚" },
             { jp: "最近 (さいきん)", ch: "最近" },
@@ -256,11 +237,11 @@
             { jp: "出席 (しゅっせき)", ch: "出席" },
             { jp: "趣味 (しゅみ)", ch: "興趣" },
             { jp: "準備 (じゅんび)", ch: "準備" },
-            { jp: "正月 (しょうがつ)", ch: "正月 (新年)" },
-            { jp: "小説 (しょうせつ)", ch: "小說" },
+            { jp: "正月 (しょうがつ)", ch: "新年" },
+            { jp: "小說 (しょうせつ)", ch: "小說" },
             { jp: "招待 (しょうたい)", ch: "招待" },
             { jp: "承知 (しょうち)", ch: "知道、應允" },
-            { jp: "将来 (しょうらい)", ch: "將來" },
+            { jp: "將來 (しょうらい)", ch: "將來" },
             { jp: "食事 (しょくじ)", ch: "用餐" },
             { jp: "進歩 (しんぽ)", ch: "進步" },
             { jp: "生活 (せいかつ)", ch: "生活" },
@@ -276,17 +257,16 @@
             { jp: "都合 (つごう)", ch: "方便與否" },
             { jp: "手袋 (てぶくろ)", ch: "手套" },
             { jp: "寺 (てら)", ch: "寺廟" },
-            { jp: "展覧会 (てんらんかい)", ch: "展覽會" },
+            { jp: "展覽會 (てんらんかい)", ch: "展覽會" },
             { jp: "道具 (どうぐ)", ch: "道具、工具" },
             { jp: "特別 (とくべつ)", ch: "特別" },
             { jp: "特急 (とっきゅう)", ch: "特急電車" },
             { jp: "泥棒 (どろぼう)", ch: "小偷" },
             { jp: "日記 (にっき)", ch: "日記" },
             { jp: "入院 (にゅういん)", ch: "住院" },
-            { jp: "人形 (にんぎょう)", ch: "娃娃、玩偶" },
+            { jp: "人形 (にんぎょう)", ch: "娃娃" },
             { jp: "値段 (ねだん)", ch: "價格" },
-            { jp: "熱 (ねつ)", ch: "發燒、熱度" }
-        ];            
+            { jp: "熱 (ねつ)", ch: "發燒" }
         ];
 
         let currentQuiz = [];
@@ -301,7 +281,6 @@
             quizMode = mode;
             currentIndex = 0;
             score = 0;
-            // 隨機選出 10 題
             currentQuiz = [...wordBank].sort(() => 0.5 - Math.random()).slice(0, 10);
             
             document.getElementById('mode-selection').classList.add('hidden');
@@ -316,7 +295,6 @@
             document.getElementById('progress').innerText = `題目：${currentIndex + 1} / 10`;
             document.getElementById('question-text').innerText = isJpToCh ? q.jp : q.ch;
 
-            // 生成選項（1個正確 + 3個隨機錯誤）
             let options = [q];
             while(options.length < 4) {
                 let randomWord = wordBank[Math.floor(Math.random() * wordBank.length)];
@@ -328,7 +306,7 @@
             grid.innerHTML = '';
             options.forEach(opt => {
                 const btn = document.createElement('button');
-                btn.className = "p-4 border-2 border-gray-200 rounded-xl hover:border-blue-500 hover:bg-blue-50 transition-all text-lg";
+                btn.className = "p-4 border-2 border-gray-200 rounded-xl hover:border-blue-500 hover:bg-blue-50 transition-all text-lg text-left";
                 btn.innerText = isJpToCh ? opt.ch : opt.jp;
                 btn.onclick = () => checkAnswer(opt === q, q);
                 grid.appendChild(btn);
@@ -341,10 +319,10 @@
                 alert("正解！");
             } else {
                 alert(`可惜！正確答案是：${quizMode === 'jp-to-ch' ? questionObj.ch : questionObj.jp}`);
-                // 加入錯題庫（檢查是否重複）
                 if (!wrongWords.some(w => w.jp === questionObj.jp)) {
                     wrongWords.push(questionObj);
                     localStorage.setItem('n4_wrong_words', JSON.stringify(wrongWords));
+                    document.getElementById('wrong-count').innerText = wrongWords.length;
                 }
             }
             
